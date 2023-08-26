@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Movie-me",
+    "slug": "Movie-me",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
