@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "134475985992",
+    "project_id": "movie-me-c891a",
+    "storage_bucket": "movie-me-c891a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134475985992:android:db0ba51654330b37bd547d",
+        "android_client_info": {
+          "package_name": "com.movieme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134475985992-mjfm4hj6fv1fm2p75v21g0d9cbp2ban2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMKjZ1S4wwHt02yv7fNsB3f8yZdS-fADs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134475985992-mjfm4hj6fv1fm2p75v21g0d9cbp2ban2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
