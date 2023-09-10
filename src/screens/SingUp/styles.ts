@@ -12,6 +12,7 @@ export const Content = styled.View`
     padding: 24px;
     flex: 1;
     justify-content: flex-end;
+    overflow: hidden;
 `;
 
 
@@ -66,6 +67,7 @@ export const Span = styled.Text`
 `;
 
 export const FormContext = styled.View`
+    margin-bottom: 30px;
  
 `
 export const FormSection = styled.View`

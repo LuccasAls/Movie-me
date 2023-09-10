@@ -1,6 +1,6 @@
 const API_KEY = '3fdfb43d043847bfc809d04d451e19f8';
 const API_BASE = 'https://api.themoviedb.org/3'
-
+export const IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
 
 const basicFetch = async (endpoint) => {
     const req = await fetch(`${API_BASE}${endpoint}`)
@@ -15,7 +15,7 @@ export default {
             {
                 slug: 'originals',
                 title: 'Em lançamento',
-                items: await basicFetch(`/trending/all/week?language=pt-BR&api_key=${API_KEY}`)
+                items: await basicFetch(`/movie/popular?language=pt-BR&api_key=${API_KEY}`)
             }
         ]
     },
@@ -47,20 +47,31 @@ export default {
             }
         ]
     },
-    getMovieInfo: async(movieId, type) => {
-        let info = {};
+    getMovieId: async(movie) => {
+        return [
+            {
+                info: await basicFetch(`/search/movie?query=${movie}&language=pt-BR&api_key=${API_KEY}`),
 
-        if(movieId){
-            switch(type){
-                case 'movie':
-                    info = await basicFetch(`/movie/${movieId}?language=pt-BR&api_key=${API_KEY}`);
-                break;
-                case 'tv':
-                    info = await basicFetch(`/tv/${movieId}?language=pt-BR&api_key=${API_KEY}`);
-                break;
             }
-        }
+        ]
+         
+    },
+    getMovie: async(movieid) => {
+        return [
+            {
+                info: await basicFetch(`/movie/${movieid}?language=pt-BR&api_key=${API_KEY}`),
 
-        return info
+            }
+        ]
+         
+    },
+    getCast: async(movieid) => {
+        return [
+            {
+                info: await basicFetch(`/movie/${movieid}/credits?language=pt-BR&api_key=${API_KEY}`),
+ 
+            }
+        ]
+         
     }
 }

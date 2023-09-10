@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container,StarsView, Text } from './styles';
+import { Container,StarsView, StarsText } from './styles';
 
 import StarEmpty from '../../assets/star_empty.svg'
 import Star from '../../assets/star_half.svg'
@@ -26,6 +26,7 @@ export function Stars({stars} : Props) {
 
   return (
     <Container>
+        <StarsText>{stars.toFixed(1)}</StarsText>
         {s.map((item, k)=>(
             <StarsView key={k}>
                 {item === 0 && <StarEmpty width={18} height={18} fill={'#cecece'}/>}

@@ -10,15 +10,15 @@ export const Title = styled.Text`
   font-size: 22px;
   font-family: ${theme.fonts.POPPINS_BOLD};
   margin-bottom: 20px;
+  margin-top: 20px;
 
 `;
 export const UpComingList = styled.FlatList`
 
 `;
-export const ContainerImage = styled.View`
+export const ContainerImage = styled.TouchableOpacity`
   width: 344px;
   height: 193px; 
-  padding-left: 10px;
 `;
 export const CoverImage = styled.ImageBackground`
   flex: 1; 
@@ -36,7 +36,16 @@ export const TitleFilms = styled.Text`
   color: ${theme.colors.text}; 
   font-size: 18px;
   font-family: ${theme.fonts.POPPINS_BOLD};
-  padding: 15px
-  
+  padding: 15px;
 `;
 
+export const Separator = styled.View`
+  width: 15px;
+`;
+
+export const ContentDetailsFilm = styled.View`
+  overflow: hidden;
+  height: 60px;
+  width: 100%;
+  background-color: #00000008;
+`;

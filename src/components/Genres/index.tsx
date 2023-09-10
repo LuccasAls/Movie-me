@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, FlatGenres, Text, Context, Gap} from './styles';
-import tmdb from '../../services/tmdb';
 
 type Props ={
     item: any
@@ -33,6 +32,7 @@ export function Genres({item} : Props) {
         37: "Faroeste"
       }
         
+      
   return (
     
         <FlatGenres
@@ -40,7 +40,7 @@ export function Genres({item} : Props) {
             showsHorizontalScrollIndicator={false}
             ItemSeparatorComponent={Gap}
             data={item}
-            keyExtractor={item => item.id}
+            keyExtractor={(item) => item.id}
             renderItem={({item}) => (
                 <Context>
 

@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import { Container, ListGenres, Section, Title, Span, Gap, ContainerSection, ContainerFilmsImage , FilmsImageContainer, DescriptionText, TitleFilmsText, StarsContainer, StartsVoteText, StarsView, ListMovie,SectionFilmContainer } from './styles';
+import { Container, ListGenres, Section, Title, Span, Gap, ContainerFilmsImage , FilmsImageContainer, DescriptionText, TitleFilmsText, StarsContainer, ListMovie,SectionFilmContainer, LoadingContainer } from './styles';
 import { theme } from '../../theme/theme';
-import tmdb from '../../services/tmdb';
-// import { MovieHorizontal } from '../MovieHorizontal';
+import tmdb, { IMAGE_URL} from '../../services/tmdb';
 import { Genres } from '../Genres';
 import { Stars } from '../Stars';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 type Props ={
     title: string,
-    genres: any
+    genres: any,
+    navigation: any
 }
 
 
-export function Categories({title, genres}: Props) {
+export function Categories({title, genres, navigation}: Props) {
     const [colorSelect, setColorSelect] = useState(28)
     const [movieList, setMovieList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
@@ -31,60 +31,71 @@ export function Categories({title, genres}: Props) {
         }
     }
     
-    async function handleColorSelect(item) {
+    async function handleColorSelect(item: number) {
         setColorSelect(item == colorSelect ? item : item)
         loadingAll(item ? item : colorSelect)
         setIsLoading(true)
     }
-  
+
+    function handleOpenMovieDetails(id: string) {
+        navigation.navigate('MovieDetails', {movie: id})
+    }
+
+    function renderItem({item}){
+        return (
+            <Section 
+                onPress={() => handleColorSelect(item.id)}
+                style= {colorSelect === item.id ? {backgroundColor: theme.colors.primary}: {}  }>
+                <Span style= {colorSelect === item.id ? {color: theme.colors.text}: {}  }>
+                    {item.name}
+                </Span>
+            </Section>
+        )
+    }
+
+    
     return (
-        <>
+        <Container>
             <Title>{title}</Title>
-                <ListGenres
-                    horizontal        
-                    showsHorizontalScrollIndicator={false}
-                    ItemSeparatorComponent={Gap}
-                    data={genres.genres}
-                    keyExtractor={item => item.id}
-                    renderItem={({item}) => (
-                        
-                        <Section 
-                            onPress={() => handleColorSelect(item.id)}
-                            style= {colorSelect === item.id ? {backgroundColor: theme.colors.primary}: {}  }
-                        >
-                            <Span style= {colorSelect === item.id ? {color: theme.colors.text}: {}  }>
-                                {item.name}
-                            </Span>
-                        </Section>
-                    )}
-                />
+            <ListGenres
+                horizontal        
+                showsHorizontalScrollIndicator={false}
+                ItemSeparatorComponent={Gap}
+                data={genres.genres}
+                keyExtractor={item => item.id}
+                renderItem={renderItem}
+
+            />
+            
             {isLoading 
-            ? <View style={{height: 300, width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+            ? 
+                <LoadingContainer>
                     <ActivityIndicator size={40} color={'#fff'}/> 
-                </View>
+                </LoadingContainer>
             : 
-            <Container>
-                
-                <ContainerSection>
-                    {movieList.map((items, k)=>(
-                        <ContainerFilmsImage key={items.id}>
-                            <SectionFilmContainer>
-                                <FilmsImageContainer source={{ uri: `https://image.tmdb.org/t/p/w300${items.poster_path}`}}/>
-                                </SectionFilmContainer>
-                            <DescriptionText>
-                                <TitleFilmsText>{items.title}</TitleFilmsText>
-                                <StarsContainer>
-                                    <StartsVoteText>{items.vote_average}</StartsVoteText>
-                                    <Stars stars={items.vote_average}/>
+                <ListMovie  contentContainerStyle={{ gap: 20}} >
+
+                    {movieList.map((item, key) => (
+                        <ContainerFilmsImage key={key}>
+                            <SectionFilmContainer  onPress={() => handleOpenMovieDetails(item.id)}>
+                                <FilmsImageContainer source={{ uri: `${IMAGE_URL}${item.poster_path}`}}/>
+                            </SectionFilmContainer >
+                            <DescriptionText >
+                                <TitleFilmsText >{item.title}</TitleFilmsText>
+                                <StarsContainer >
+                                    
+                                    <Stars stars={item.vote_average}/>
                                 </StarsContainer>
-                                <Genres  item={items.genre_ids}/>
+                                <Genres item={item.genre_ids}/>
                             </DescriptionText>           
                         </ContainerFilmsImage>
                     ))}
-                </ContainerSection>
-            </Container>
-            }
-    </>
+
+                </ListMovie>
+            
+            } 
+            
+    </Container>
             
             
     );

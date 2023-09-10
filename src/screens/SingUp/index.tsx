@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -8,11 +8,12 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-import  auth  from '@react-native-firebase/auth';
+import  auth  from '@react-native-firebase/auth'; 
+
 import { Input } from '../../components/Input';
 import { theme } from '../../theme/theme';
 import { Button } from '../../components/Button';
-import { Title } from '../../components/Header';
+import { Header } from '../../components/Header';
 import { 
   CircleRed, 
   CircleYellow, 
@@ -29,28 +30,22 @@ import {
 from './styles';
 import { Circle } from '../../components/Circle';
 import { useNavigation } from '@react-navigation/native';
-import { VerifyErroCode } from '../../auth/VerifyErroCode';
 import { BlurView } from '@react-native-community/blur'
+import { useAuth } from '../../hooks/auth';
 
 
 export function SingUp() {
-  const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [email, setEmail] = useState(' ');
+  const [name, setName] = useState(' ');
+  const [password, setPassword] = useState(' ');
   const navigation = useNavigation()
-
-  function handleSingIn() {
-    setLoading(true)
-    
-    auth().createUserWithEmailAndPassword(email, password)
-    .then(() => Alert.alert("Conta", "Cadastrado com sucesso"))
-    .catch(error => {
-      let errorMessage = VerifyErroCode(error.code);
-      Alert.alert("Erro ao logar",errorMessage)
-    })
-    .finally(() =>  setLoading(false));
+  const {loading, singUp} = useAuth()
 
 
+
+  async function handleSingIn() {
+    await singUp({email, password, name})
   }
 
   function handleOpenSingIn() {
@@ -65,21 +60,22 @@ export function SingUp() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Content>
 
-          <Title/>
+          <Header/>
           <Getting>Hi!</Getting>
 
           <Form>
             <BlurView 
               style={{
                 position: "absolute",
-                  top: 0,
-                  left: 0,
-                  bottom: 0,
-                  right: 0,
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
               }}
               blurType="light"
               blurAmount={40}
-              reducedTransparencyFallbackColor="white">
+              
+              />
 
               
               <FormSection>
@@ -93,7 +89,7 @@ export function SingUp() {
                     textContentType='name'
                     title='Nome'
                     placeholder='Digite seu nome'
-                    onChangeText={setEmail}
+                    onChangeText={setName}
                   />
                   <Input 
                     textContentType='emailAddress'
@@ -110,17 +106,13 @@ export function SingUp() {
     
                   </FormContext>
                 
-                  { loading 
-                  ? <ActivityIndicator 
-                      size={30} 
-                      color={theme.colors.primary}
-                    /> 
-                  : <Button 
+                 <Button 
                       style={{marginTop: 10}}
                       title="Sing In"
                       onPress={handleSingIn}
+                      loading={loading}
                     />
-                  } 
+                  
                 <DescriptionFooter> 
                   <Description> Have an account? </Description>
                   <FooterSing 
@@ -130,7 +122,6 @@ export function SingUp() {
                   </FooterSing>
                 </DescriptionFooter>
               </FormSection>
-            </BlurView>
           </Form>
 
           <CircleYellow>
