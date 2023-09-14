@@ -1,4 +1,4 @@
-<<<<<<< main
+
 ![cover](.github/cover.png?style=flat)
 
 
@@ -53,7 +53,3 @@ yarn start
  
 [![Linkedin Badge](https://img.shields.io/badge/-Luccas%20Alves%20Santos-6633cc?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/rodrigo-gon%C3%A7alves-santana/)](https://www.linkedin.com/in/luccasals/) 
 </div>
-=======
-# Movie-me
-App para compras de ingressos para cinema.
->>>>>>> master
