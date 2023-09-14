@@ -2,10 +2,10 @@ import React from 'react';
 import { Container, FlatGenres, Text, Context, Gap} from './styles';
 
 type Props ={
-    item: any
+    items: any[]
 }
 
-export function Genres({item} : Props) {
+export function Genres({items} : Props) {
     
 
       
@@ -32,15 +32,16 @@ export function Genres({item} : Props) {
         37: "Faroeste"
       }
         
+    
       
   return (
-    
+    <Container>
         <FlatGenres
             horizontal
             showsHorizontalScrollIndicator={false}
             ItemSeparatorComponent={Gap}
-            data={item}
-            keyExtractor={(item) => item.id}
+            data={items}
+            keyExtractor={item => item.id}
             renderItem={({item}) => (
                 <Context>
 
@@ -49,6 +50,11 @@ export function Genres({item} : Props) {
                 </Context>
             )}
         />
+
+  
+            
+    </Container>
+    
     
   );
 }

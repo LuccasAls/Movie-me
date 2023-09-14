@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { theme } from '../../theme/theme';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   background-color: ${theme.colors.background};
 
 `;

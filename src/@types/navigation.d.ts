@@ -9,7 +9,8 @@ export declare global {
             SearchScreen: undefined;
             TicketScreen: undefined;
             Home: undefined;
-            
+            PayTicket: undefined;
+            MyTicketScreen: undefined;
         }
     }
 }

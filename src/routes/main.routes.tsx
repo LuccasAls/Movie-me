@@ -3,6 +3,8 @@ import { createStackNavigator, CardStyleInterpolators }  from '@react-navigation
 
 import { MovieDetails } from '../screens/MovieDetails';
 import { TabRoutes } from './tab.routes';
+import { PayTicket } from '../screens/PayTicket';
+import { MyTicketScreen } from '../screens/MyTicketScreen';
 const Stack = createStackNavigator()
 
 const config = {
@@ -33,6 +35,15 @@ export function MainRoutes() {
                 name="MovieDetails" 
                 component={MovieDetails}
             />
+            <Stack.Screen 
+                name='PayTicket'
+                component={PayTicket}
+            />
+            <Stack.Screen 
+                name='MyTicketScreen'
+                component={MyTicketScreen}
+            />
+
 
         </Stack.Navigator>
     )
