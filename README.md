@@ -15,7 +15,10 @@ A aplicação para compra de ingressos para assistir filmes no cinema, com o pro
 - Firebase Firestore with Real Time updates
 - Styledcomponets
 - LinearGradient
-
+- Context API
+- Vector Icons
+- React Native Svg e Svg Transform
+- Async Storage
 
 
 ## ✨ Funcionalidades
@@ -28,10 +31,7 @@ A aplicação para compra de ingressos para assistir filmes no cinema, com o pro
 - Comprar ingressos
 - Ver os todos os ingressos comprados.
 - Entre outras
-- Context API
-- Vector Icons
-- React Native Svg e Svg Transform
-- Async Storage
+
 
 ## Executando o projeto
 
