@@ -1,12 +1,13 @@
 import styled from 'styled-components/native';
 import { theme } from '../../theme/theme';
 
-export const Container = styled.View`
-  padding-top: 20px;
-  
+export const Container = styled.SafeAreaView`
+  background-color: ${theme.colors.background};
+
 `;
 
 export const ListGenres = styled.FlatList`
+  margin-bottom: 20px;
 `;
 
 export const Section = styled.TouchableOpacity`
@@ -14,7 +15,7 @@ export const Section = styled.TouchableOpacity`
   border-width: 2px;
   border-color: ${theme.colors.primary};
   border-radius: 50px;
-
+  height: 40px;
 `;
 
 export const Title = styled.Text`
@@ -83,7 +84,6 @@ export const StarsView = styled.View`
 `;
 
 export const ListMovie = styled.ScrollView`
-  flex: 1;
 
 `
 // Movie Horizontal
@@ -99,6 +99,7 @@ export const FilmsImageContainer = styled.Image`
 
 export const ContainerFilmsImage = styled.View`
    flex: 1;
+  
    flex-direction: row;
    margin-bottom: 30px;
 `;
@@ -129,3 +130,10 @@ export const StarsContainer = styled.View`
 
 export const SectionFilmContainer = styled.TouchableOpacity`
 `;
+
+export const LoadingContainer =styled.View`
+  height: 300px;
+  width: 100%; 
+  justify-content: center; 
+  align-items: center;
+`

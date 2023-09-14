@@ -10,6 +10,7 @@ export const theme = {
 
         facebookField: '#104FAD',
         circleRed: '#C84841',
+        onAccept: '#6AAD35',
         
 
 

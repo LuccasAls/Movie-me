@@ -17,10 +17,12 @@ export const Context = styled.View`
 export const ListFilms = styled.FlatList`
 `;
 export  const SectionTrending = styled.TouchableOpacity`
-  padding-right: 10px;
 `;
 export const CardFilms = styled.Image`
   width: 170px; 
   height: 236px; 
   border-radius: 20px;
+`;
+export const Separator = styled.View`
+  width: 15px;
 `;

@@ -6,7 +6,7 @@ import { theme } from '../../theme/theme';
 
 
 
-export function Title() {
+export function Header() {
   return (
     <Container>
 

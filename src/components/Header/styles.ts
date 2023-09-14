@@ -6,7 +6,6 @@ export const Container = styled.View`
 
 export const HeaderTitle = styled.View`
     flex-direction: row;
-    margin-top: 75px;
     width: 100%;
     justify-content: center;
 `
@@ -14,5 +13,6 @@ export const HeaderTitle = styled.View`
 export const Text = styled.Text`
     font-size: 44px;
     text-align: center;
-    font-family: ${theme.fonts.POPPINS_BOLD}
+    font-family: ${theme.fonts.POPPINS_BOLD};
+
 `;

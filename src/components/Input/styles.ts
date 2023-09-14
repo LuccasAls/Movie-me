@@ -20,5 +20,5 @@ export const InputField = styled.TextInput`
     font-family: ${theme.fonts.POPPINS_REGULAR};
     font-size: 13px;
     color: ${theme.colors.text};
-    
+    border: 0px;
 `;

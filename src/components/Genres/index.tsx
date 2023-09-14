@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, FlatGenres, Text, Context, Gap} from './styles';
-import tmdb from '../../services/tmdb';
 
 type Props ={
-    item: any
+    items: any[]
 }
 
-export function Genres({item} : Props) {
+export function Genres({items} : Props) {
     
 
       
@@ -33,13 +32,15 @@ export function Genres({item} : Props) {
         37: "Faroeste"
       }
         
-  return (
     
+      
+  return (
+    <Container>
         <FlatGenres
             horizontal
             showsHorizontalScrollIndicator={false}
             ItemSeparatorComponent={Gap}
-            data={item}
+            data={items}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
                 <Context>
@@ -49,6 +50,11 @@ export function Genres({item} : Props) {
                 </Context>
             )}
         />
+
+  
+            
+    </Container>
+    
     
   );
 }

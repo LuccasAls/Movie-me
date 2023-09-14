@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { theme } from '../../theme/theme';
 
 export const Container = styled.ScrollView`
-  flex:1;
+  height: 100%;
   background-color: ${theme.colors.background};
 
 `;

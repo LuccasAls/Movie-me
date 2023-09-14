@@ -8,32 +8,39 @@ import {
     ContainerImage,
     CoverImage,
     TitleContainer,
-    TitleFilms
+    TitleFilms,
+    Separator,
+    ContentDetailsFilm
 } from './styles';
-import { View } from 'react-native'
+import { IMAGE_URL } from '../../services/tmdb';
 
 type Props = {
     title: string,
-    items: any
+    items: any,
+    navigation: any,
 }
 
-export function MovieUpcoming({title, items} : Props) {
+export function MovieUpcoming({title, items, navigation} : Props) {
     
+    function handleOpenMovieDetails(id: String) {
+        navigation.navigate('MovieDetails', {movie: id})
+    }
   return (
     <Container >
         <Title>{title}</Title>
-            <UpComingList 
+            <UpComingList
+                ItemSeparatorComponent={Separator}
                 showsHorizontalScrollIndicator={false}
                 horizontal
-                data={items.slice(4, 9)}
-                keyExtractor={item => item.id}
+                data={items}
+                keyExtractor={(item) => item.id}
                 renderItem={({item}) => (
-                    <ContainerImage>
+                    <ContainerImage onPress={() => handleOpenMovieDetails(item.id)}>
                         <CoverImage 
                             borderRadius={30} 
-                            source={{ uri: `https://image.tmdb.org/t/p/w500${item.backdrop_path}` }}>
+                            source={{ uri: `${IMAGE_URL}${item.backdrop_path}` }}>
                            <TitleContainer>
-                                <View style={{ overflow: "hidden" , width: '100%', height: 60, backgroundColor: '#0000008'}}>
+                                <ContentDetailsFilm>
                                     <BlurView 
                                         style={{
                                             position: "absolute",
@@ -48,7 +55,7 @@ export function MovieUpcoming({title, items} : Props) {
                                         >
                                         <TitleFilms>{item.title}</TitleFilms>
                                     </BlurView>
-                                </View>
+                                </ContentDetailsFilm>
                            </TitleContainer>
                         </CoverImage> 
                     </ContainerImage>

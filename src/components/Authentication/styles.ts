@@ -8,6 +8,7 @@ export const Container = styled.TouchableOpacity`
   align-items: center;
   border-radius: 30px;
   padding: 13px 20px;
+  border: 0px;
   
 `;
 export const Image = styled.Image`

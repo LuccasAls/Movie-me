@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Image, Text, FlatList } from 'react-native';
-import { Title } from './styles';
+import { Separator, Title } from './styles';
 import { 
     Container,
     Context,
@@ -8,25 +7,35 @@ import {
     SectionTrending,
     CardFilms
  } from './styles';
+import { IMAGE_URL } from '../../services/tmdb';
 
-type Props = {
+type Props = & {
     title: string,
-    items: any
+    items: any,
+    navigation: any
 }
 
-export function MovieTrending({title, items}: Props) {
+
+export function MovieTrending({title, items, navigation} : Props) {
+
+    
+
+    function handleOpenMovieDetails(id: string) {
+        navigation.navigate('MovieDetails', {movie: id})
+    }
   return (
     <Container>
         <Title>{title}</Title>
         <Context>
             <ListFilms 
+                ItemSeparatorComponent={Separator}
                 showsHorizontalScrollIndicator={false}
                 horizontal
                 data={items}
-                keyExtractor={item => item.id}
+                keyExtractor={(item) => item.id}
                 renderItem={({item}) => (
-                    <SectionTrending>
-                        <CardFilms source={{ uri: `https://image.tmdb.org/t/p/w300${item.poster_path}` }}/>                        
+                    <SectionTrending  onPress={() => handleOpenMovieDetails(item.id)}>
+                        <CardFilms source={{ uri: `${IMAGE_URL}${item.poster_path}` }}/>                        
                     </SectionTrending>
                 )}
             />

@@ -15,8 +15,19 @@ export const ImageFilms = styled.ImageBackground`
   width: 100%;
   justify-content: space-between ;
 `;
-export const Header = styled.View`
+export const HeaderContent = styled.View`
   width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 40px;
+  
+`;
+export const TextTitle = styled.Text`
+  font-size: 27px;
+  text-align:center;
+  font-family: ${theme.fonts.POPPINS_BOLD};
+  color: ${theme.colors.text};
+
 `;
 export const Section = styled.View`
   flex: 1;
@@ -35,6 +46,7 @@ export const DescriptionView = styled.View`
   margin-bottom: 30px;
 
 `;
+
 export const Span = styled.View`
   align-items: center;
 `;

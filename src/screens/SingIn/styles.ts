@@ -12,6 +12,7 @@ export const Content = styled.View`
     padding: 24px;
     flex: 1;
     justify-content: flex-end;
+    overflow: hidden;
 `;
 
 export const CircleYellow = styled.View`
@@ -30,7 +31,6 @@ export const CircleRed = styled.View`
 export const Form = styled.View`
     height: 490px;
     width: 350px;
-    background-color: #cecece40;
     border-radius: 40px;
     padding: 26px;
     overflow: hidden;
@@ -40,6 +40,7 @@ export const SectionAuth = styled.View`
     flex-direction: row;
     gap: 20px;
     margin-top: 10px;
+    
 `;
 
 export const FormHeader = styled.View`
@@ -75,5 +76,5 @@ export const ForgotPassword = styled.TouchableOpacity`
 `;
 
 export const FormContainer = styled.View`
-    padding: 28px;
+
 `;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -26,45 +26,38 @@ import  auth from '@react-native-firebase/auth';
 import { Input } from '../../components/Input';
 import { theme } from '../../theme/theme';
 import { Button } from '../../components/Button';
-import { Title } from '../../components/Header';
+import { Header } from '../../components/Header';
 import { Authentication } from '../../components/Authentication';
 import google from '../../assets/google.png'
 import facebook from '../../assets/facebook.png'
 import { Circle } from '../../components/Circle';
-// import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { MaterialIcons } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons';
+import { BlurView } from '@react-native-community/blur';
+// import {AuthContext} from '../../context/auth';
 import { VerifyErroCode } from '../../auth/VerifyErroCode';
-import { BlurView } from '@react-native-community/blur'
+import { useAuth } from '../../hooks/auth';
 
 export function SingIn() {
-  const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [isLoading, setIsLoading] = useState(false)
+  const [email, setEmail] = useState(' ');
+  const [password, setPassword] = useState(' ');
   const navigation = useNavigation()
+  const { loading, singIn, forgotPassword} = useAuth();
 
-  function handleSingIn() {
-    setLoading(true)
-    auth().signInWithEmailAndPassword(email, password)
-    .then(() => console.log("Logado com sucesso"))
-    .catch(error => {
-      let errorMessage = VerifyErroCode(error.code);
-      Alert.alert("Erro ao logar", errorMessage)
-    })
-    .finally(() =>  setLoading(false));
+
+  async function handleSingIn() {
+    await singIn({email, password})
   }
 
   function handleOpenSingUp() {
     navigation.navigate('SingUp')
   }
 
+  
+
   function handleForgotPassword() {
-    auth().sendPasswordResetEmail(email)
-    .then(() => Alert.alert("Redefinição de senha!", "Enviamos um e-mail para a sua redefinição"))
-    .catch(error => {
-      let errorMessage = VerifyErroCode(error.code);
-      Alert.alert("Erro ao logar", errorMessage)
-    })
+    forgotPassword({email})
   }
 
   return (
@@ -74,22 +67,22 @@ export function SingIn() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Content>
 
-          <Title/>
+          <Header/>
           <Getting>Hi!</Getting>
           
           <Form> 
-            
             <BlurView 
-              style={{
-                position: "absolute",
+                style={{
+                  position: 'absolute',
                   top: 0,
-                  left: 0,
                   bottom: 0,
+                  left: 0,
                   right: 0,
-              }}
-              blurType="light"
-              blurAmount={40}
-              reducedTransparencyFallbackColor="white">
+                  
+                }}
+                blurType='light'
+                blurAmount={70}
+              />
                 <FormContainer>
                   <FormHeader>
                     <Description>Please, sing in to continue!</Description>
@@ -123,6 +116,7 @@ export function SingIn() {
                   />
                   <ForgotPassword
                     onPress={handleForgotPassword}>
+                      
                     <Span>Esqueci a senha</Span>
                     <MaterialIcons
                         name='email'
@@ -132,17 +126,13 @@ export function SingIn() {
                       />
                   </ForgotPassword>
                 
-                  { loading 
-                    ? <ActivityIndicator 
-                        style={{ marginTop: 40, padding: 11}}
-                        size={30} 
-                        color={theme.colors.primary}
-                      /> 
-                    : <Button 
+                   <Button 
                         title="Login"
                         onPress={handleSingIn}
+                        loading={loading}
+
                       />
-                  }
+                  
                   <DescriptionFooter> 
                     <Description> Don't have an account? </Description>
                     <FooterSing 
@@ -153,7 +143,7 @@ export function SingIn() {
                     </FooterSing>
                   </DescriptionFooter>
               </FormContainer>
-            </BlurView>
+              
           </Form>
 
           <CircleYellow>
