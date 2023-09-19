@@ -1,6 +1,8 @@
+<div style="display: inline_block " >
 
-![cover](.github/cover.png?style=flat)
-
+ <img  src=".github/cover.png" width="60%"/>
+ <img src=".github/202309190217.gif" height="430px" />
+</div>
 
 ## 💻 Projeto
 A aplicação para compra de ingressos para assistir filmes no cinema, com o propósito no qual o cliente não precisa imprimir o ingresso apenas mostrar pela própria aplicação.
